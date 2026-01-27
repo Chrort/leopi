@@ -1,0 +1,16 @@
+@font-face {
+    font-family: main;
+    src: url("../font/Aldrich-Regular.ttf");
+}
+
+:root{
+    --pirmary-accent: rgb(0, 150, 150);
+    --primary-white: rgb(230, 230, 230);
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'main', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

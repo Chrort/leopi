@@ -1,0 +1,44 @@
+@import url("./root.css");
+
+header{
+    padding: 10px 7%;
+    background-color: var(--pirmary-accent);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 0 5px black;
+}
+
+header > h1 > a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+#logo{
+    margin-right: 15px;
+    height: 1em;
+}
+
+nav{
+    position: absolute;
+    right: 7%;
+}
+
+nav > a{
+    margin-left: 1em;
+    text-decoration: none;
+    color: black;
+}
+
+nav > a:hover{
+    text-decoration: underline var(--primary-white);
+}
+
+@media (width<500px) {
+    nav{
+        display: flex;
+        flex-direction: column;
+    }
+}

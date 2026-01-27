@@ -1,0 +1,12 @@
+@import url("./root.css");
+
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--primary-white);
+}
+
+#start > div > a{
+    text-decoration: none;
+    color: black;
+}
