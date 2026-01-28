@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+$loggedIn = $_SESSION['loggedIn'] ?? false;
+$username = $_SESSION['username'] ?? "";
+
+$welcomeText;
+
+$loggedIn ? $welcomeText = "Hallo " . $username . " 👋" : $welcomeText = "Logge dich ein um Fortschritt zu speichern";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +26,8 @@
 <?php require_once '../inc/header.php' ?>
 
 <body>
+
+    <h1><?= htmlspecialchars($welcomeText) ?></h1>
 
 </body>
 <?php require_once '../inc/footer.php' ?>

@@ -19,3 +19,14 @@ function addUser(mysqli $conn, string $name, string $pwd)
     $stmt->bind_param("ss", $name, $pwd);
     $stmt->execute();
 }
+
+//fragt pwd nach benutzername ab
+function getPwdByName(mysqli $conn, string $name): ?string
+{
+    $stmt = $conn->prepare("SELECT pwd FROM users WHERE name = ?");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['pwd'] ?? null;
+}

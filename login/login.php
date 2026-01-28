@@ -3,11 +3,14 @@
 session_start();
 
 $registrationMessage = $_SESSION['registrationMessage'] ?? "";
+$loginMessage = $_SESSION['loginMessage'] ?? "";
+
 $messageVisibility = "none";
 
-$registrationMessage == "" ? $messageVisibility = "none" : $messageVisibility = "flex";
+$registrationMessage == "" && $loginMessage == "" ? $messageVisibility = "none" : $messageVisibility = "flex";
 
 unset($_SESSION['registrationMessage']);
+unset($_SESSION['loginMessage']);
 
 ?>
 
@@ -38,6 +41,7 @@ unset($_SESSION['registrationMessage']);
             </fieldset>
             <input type="submit" value="Login" name="submit" id="submitLogin">
         </form>
+        <div id="logMessage" style="display: <?= $messageVisibility ?>;"><?= $loginMessage ?></div>
         <form action="../config/register_config.php" method="post" id="registerForm">
             <fieldset>
                 <legend>Benutzername</legend>

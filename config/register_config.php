@@ -29,7 +29,7 @@ try {
     error($e->getMessage());
 }
 
-$_SESSION['registrationMessage'] = "Erfolgreich Registriert als " . $name . "!";
+$_SESSION['registrationMessage'] = "Erfolgreich Registriert als " . htmlspecialchars($name) . "!";
 header("Location: ../login/login.php?registrationSucces=true");
 die();
 
