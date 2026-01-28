@@ -11,9 +11,9 @@ $loggedIn = $_SESSION['loggedIn'] ?? false;
         <a href="/leopi/index.php">Welcome</a>
         <a href="/leopi/startpage/startpage.php">Startpage</a>
         <?php if ($loggedIn): ?>
-            <a href="/leopi/inc/logout.php">Logout</a>
+            <a href="/leopi/inc/logout.php" id="logoutBtn">Logout</a>
         <?php elseif (!$loggedIn): ?>
-            <a href="/leopi/login/login.php">Login</a>
+            <a href="/leopi/login/login.php" id="loginBtn">Login</a>
         <?php endif ?>
     </nav>
 </header>

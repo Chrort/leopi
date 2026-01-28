@@ -26,9 +26,20 @@ $loggedIn ? $welcomeText = "Hallo " . $username . " 👋" : $welcomeText = "Logg
 <?php require_once '../inc/header.php' ?>
 
 <body>
+    <main>
+        <h1><?= htmlspecialchars($welcomeText) ?></h1>
+        <section id="courses">
+            <div id="introduction" class="course">
+                <div class="info">
+                    <div class="title">Einleitung</div>
+                    <div class="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, alias? Ad sapiente laudantium commodi quos qui eum? Aspernatur quis reprehenderit quas. Eos repellendus earum nobis qui nostrum odio eveniet vitae.</div>
+                </div>
+                <div class="learn">
 
-    <h1><?= htmlspecialchars($welcomeText) ?></h1>
-
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 <?php require_once '../inc/footer.php' ?>
 
