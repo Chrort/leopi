@@ -4,7 +4,7 @@
 }
 
 :root{
-    --primary-1: rgb(230, 230, 230);
+    --primary-1: rgb(240, 240, 240);
     --primary-2: rgb(0, 150, 150);
     --green: rgb(0, 180, 0);
     --red: rgb(180, 0, 0);
@@ -15,4 +15,9 @@
     padding: 0;
     margin: 0;
     font-family: 'main', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    background: #F0F0F0;
+background: radial-gradient(circle,rgba(240, 240, 240, 1) 9%, rgba(250, 250, 250, 1) 36%, rgba(235, 235, 235, 1) 54%, rgba(237, 237, 237, 1) 80%, rgba(255, 255, 255, 1) 100%);
 }
