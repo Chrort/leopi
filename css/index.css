@@ -3,7 +3,7 @@
 body{
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: var(--primary-1);
+    background-color: var(--bg);
 }
 
 #start > div > a{

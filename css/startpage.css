@@ -3,7 +3,7 @@
 body{
     height: 100%;
     overflow-x: hidden;
-    background-color: var(--primary-1);
+    background-color: var(--bg);
 }
 
 main{
@@ -34,7 +34,7 @@ main{
     align-items: center;
     flex-direction: row;
     padding: 20px;
-    border: 1px solid var(--primary-2);
+    border: 1px solid var(--primary);
     border-radius: 50px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
     transition: box-shadow .5s ease;
@@ -76,13 +76,15 @@ main{
 }
 
 .playButton:hover{
-    background-color: var(--primary-2);
+    background-color: var(--highlight);
 }
 
 .title{
     font-size: 1.8em;
+    color: var(--text);
 }
 
 .intro{
     font-size: .7em;
+    color: var(--text-muted);
 }

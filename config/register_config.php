@@ -30,6 +30,7 @@ try {
 }
 
 $_SESSION['registrationMessage'] = "Erfolgreich Registriert als " . htmlspecialchars($name) . "!";
+$_SESSION['showForm'] = "register";
 header("Location: ../login/login.php?registrationSucces=true");
 die();
 
@@ -65,6 +66,7 @@ function errorHandlers(mysqli $conn, string $name, string $pwd, string $pwdRepea
 function error(string $message)
 {
     $_SESSION['registrationMessage'] = $message;
+    $_SESSION['showForm'] = "register";
     header("Location: ../login/login.php?registrationFailed=true");
     die();
 }

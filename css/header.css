@@ -4,7 +4,7 @@ header{
     position: sticky;
     top: 0;
     padding: 10px 7%;
-    background-color: var(--primary-2);
+    background-color: var(--primary);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -35,7 +35,7 @@ nav > a{
 }
 
 nav > a:hover{
-    text-decoration: underline var(--primary-1);
+    text-decoration: underline var(--highlight);
 }
 
 #loginBtn{

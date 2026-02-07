@@ -2,15 +2,31 @@
 
 session_start();
 
+$displayLoginForm = "none";
+$displayRegisterForm = "none";
+
+$showForm = $_SESSION["showForm"] ?? "login";
+
+$changeFormTextContent = "Registrieren";
+
+//schaut ob er login- oder register from anzeigen soll
+if ($showForm == "login") {
+    $displayLoginForm = "block";
+} else {
+    $displayRegisterForm = "block";
+    $changeFormTextContent = "Login";
+}
+
+//prüft auf anzuzeigende Nachrichten
 $registrationMessage = $_SESSION['registrationMessage'] ?? "";
 $loginMessage = $_SESSION['loginMessage'] ?? "";
 
+//falls Nachrichten vorhanden $messageVisibility = "flex"; s.u.
 $messageVisibility = "none";
 
 $registrationMessage == "" && $loginMessage == "" ? $messageVisibility = "none" : $messageVisibility = "flex";
 
-unset($_SESSION['registrationMessage']);
-unset($_SESSION['loginMessage']);
+unset($_SESSION["showForm"], $_SESSION['registrationMessage'], $_SESSION['loginMessage']);
 
 ?>
 
@@ -31,7 +47,7 @@ unset($_SESSION['loginMessage']);
 <body>
     <main>
         <div id="forms">
-            <form action="../config/login_config.php" method="post" id="loginForm">
+            <form action="../config/login_config.php" method="post" id="loginForm" style="display: <?= $displayLoginForm ?>">
                 <fieldset>
                     <legend>Benutzername</legend>
                     <input type="text" name="name" id="name" required placeholder="Benutzername">
@@ -41,9 +57,9 @@ unset($_SESSION['loginMessage']);
                     <input type="password" name="pwd" id="pwd" required placeholder="Passwort">
                 </fieldset>
                 <input type="submit" value="Login" name="submit" id="submitLogin">
+                <div id="logMessage" style="display: <?= $messageVisibility ?>;"><?= $loginMessage ?></div>
             </form>
-            <div id="logMessage" style="display: <?= $messageVisibility ?>;"><?= $loginMessage ?></div>
-            <form action="../config/register_config.php" method="post" id="registerForm">
+            <form action="../config/register_config.php" method="post" id="registerForm" style="display: <?= $displayRegisterForm ?>">
                 <fieldset>
                     <legend>Benutzername</legend>
                     <input type="text" name="name" id="name" required placeholder="Benutzername">
@@ -56,9 +72,9 @@ unset($_SESSION['loginMessage']);
                     <legend>Wiederhole Passwort</legend>
                     <input type="password" name="pwdRepeat" id="pwdRepeat" required placeholder="Passwort">
                 </fieldset>
-                <input type="submit" value="Register" name="submit" id="submitRegister">
+                <input type="submit" value="Registrieren" name="submit" id="submitRegister">
+                <div id="regMessage" style="display: <?= $messageVisibility ?>;"><?= $registrationMessage ?></div>
             </form>
-            <div id="regMessage" style="display: <?= $messageVisibility ?>;"><?= $registrationMessage ?></div>
             <h5 id="changeForm">Registrieren</h5>
         </div>
     </main>

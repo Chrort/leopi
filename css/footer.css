@@ -1,10 +1,10 @@
 @import url("./root.css");
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
-    background-color: black;
+    background-color: var(--bg-dark);
     color: grey;
     padding: 3px;
     box-shadow: 0 0 5px black;

@@ -22,6 +22,7 @@ if (!$errorHandlerResult[0]) {
 }
 
 $_SESSION['loggedIn'] = true;
+$_SESSION['showForm'] = "login";
 $_SESSION['username'] = $name;
 header("Location: ../startpage/startpage.php?loginSucces=true");
 die();
@@ -53,6 +54,7 @@ function rightPwd(mysqli $conn, string $name, string $pwd): bool
 function error(string $message)
 {
     $_SESSION['loginMessage'] = $message;
+    $_SESSION['showForm'] = "login";
     header("Location: ../login/login.php?loginFailed=true");
     die();
 }
