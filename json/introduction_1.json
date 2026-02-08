@@ -1,6 +1,11 @@
 {
-    "name": "Einleitung  Brüche",
-    "pages": 2,
-    "text1": "Lorem",
-    "text2": "Lorem"
+    "name": "Einleitung Brüche",
+    "file_name": "introduction_1.json",
+    "type": "learn",
+    "intro": "Einstieg in die Welt der Bruchrechnung! Was sind Brüche; Einfache Beispiele; Erweitern & Kürzen",
+    "pages": 
+    [
+        "html_1",
+        "html_2"
+    ]
 }
