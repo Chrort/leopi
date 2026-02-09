@@ -2,6 +2,8 @@
 
 header{
     position: sticky;
+    height: 4em;
+    width: 100%;
     top: 0;
     padding: 10px 7%;
     background-color: var(--primary);

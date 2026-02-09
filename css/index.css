@@ -1,8 +1,7 @@
 @import url("./root.css");
 
 body{
-    min-height: 100vh;
-    overflow-x: hidden;
+    height: calc(100vh - 4em);
     background-color: var(--bg);
 }
 

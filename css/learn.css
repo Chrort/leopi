@@ -1,0 +1,63 @@
+@import url("./root.css");
+
+html{
+    scrollbar-width: none;
+}
+
+body{
+    width: 100%;
+    height: calc(100vh - 4em);
+    background-color: var(--bg-dark);
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 1em;
+}
+
+#panels{
+    align-self: flex-start;
+    background-color: var(--bg-dark);
+    transform: translateX(0);
+    height: 80%;
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    gap: 4em;
+    transition: transform .75s;
+}
+
+.panel{
+    font-size: 1.6em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4em;
+    border-radius: 3em;
+    background-color: var(--bg);
+    height: 100%;
+    box-shadow: 0 0 5px black;
+}
+
+.navBtn{
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    transform: translateY(50%);
+}
+
+#goRight{
+    font-size: 3em;
+    right: 1em;
+}
+
+#goLeft{
+    font-size: 3em;
+    left: 1em;
+}
