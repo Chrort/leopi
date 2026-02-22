@@ -22,6 +22,7 @@ $jsonData = completeJsonData(getJsonFileContent("../../json/" . $name, $number))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="level" id="level" content="<?= $jsonData["level"] ?>">
     <meta name="mode" id="mode" content="<?= $jsonData["mode"] ?>">
+    <meta name="fileName" id="fileName" content="<?= $fileName ?>">
     <link rel="stylesheet" href="../../css/train.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/footer.css">

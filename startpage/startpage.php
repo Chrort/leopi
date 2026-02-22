@@ -3,6 +3,9 @@
 session_start();
 
 require '../inc/json.php';
+require_once '../config/connect.php';
+require '../queries/user_queries.php';
+require '../queries/games_queries.php';
 
 $loggedIn = $_SESSION['loggedIn'] ?? false;
 $username = $_SESSION['username'] ?? "";
@@ -10,14 +13,14 @@ $username = $_SESSION['username'] ?? "";
 $welcomeText;
 
 //überpruft ob Nutzer eingeloggt ist; ob er Wilkommenstext anzeigen soll
-$loggedIn ? $welcomeText = "Hallo " . $username . " 👋" : $welcomeText = "Logge dich ein um Fortschritt zu speichern";
+$loggedIn ? $welcomeText = "Hallo " . $username . " 👋" : $welcomeText = "<a href='../login/login.php'>Logge dich ein um Fortschritt zu speichern</a>";
 
 $courseData = [
-    ["id" => "introduction", "title" => "Einleitung"],
-    ["id" => "multiplication", "title" => "Multiplikation"],
-    ["id" => "division", "title" => "Division"],
-    ["id" => "addition", "title" => "Addition"],
-    ["id" => "subtraction", "title" => "Subtraktion"]
+    ["id" => "introduction", "title" => "Einleitung", "intro" => "Tauche ein in die Welt der Bruchrechnung! Lerne Grundlagen um mit perfekten Startbedingungen losrechnen zu können."],
+    ["id" => "multiplication", "title" => "Multiplikation", "intro" => "Von den vier Grundrechenarten ist die Multiplikation das simpelste, da keine Erweiterung nötig ist zum verrechnen."],
+    ["id" => "division", "title" => "Division", "intro" => "Division ist genauso wie Multiplikation nur, dass man vorher den Kehrwert bilden muss. Also quasi genauso zielgerichtet lösbar."],
+    ["id" => "addition", "title" => "Addition", "intro" => "Bei der Addition wird es im Kopf ein bisschen schwieriger, da man erst die Brüche gleichnamig machen muss, also den Wert des Nenners anpassen muss durch erweitern."],
+    ["id" => "subtraction", "title" => "Subtraktion", "intro" => "Sobald man Addition gemeistert hat gibt es keine weitere Hürde die im Weg steht um zu subtrahiern. Gleiches Prinzip - es wird nur weniger."]
 ];
 
 //zählt files mit entsprechendem Präfix
@@ -30,6 +33,25 @@ function countFiles(string $dir, string $prefix)
         if ($prefix == substr($allFiles[$i], 0, strlen($prefix))) $files++;
     }
     return $files;
+}
+
+function getHighscore(mysqli $conn, string $fileName, string $username, bool $loggedIn): string
+{
+    //brich ab wenn der Nutzer nicht eingeloggt ist
+    if ($username == "" || $loggedIn == false) return "N/A";
+
+    //holt sich player_id und dann die Daten vom Nutzer
+    $playerId = getIdByName($conn, $username);
+    $gameData = getDataByPlayer($conn, $playerId);
+
+    $maxScore = -1;
+
+    //iteriert durch die gameData-Array und speichert jeweils den höchsten score nach fileName
+    for ($i = 0; $i < count($gameData); $i++) {
+        if ($gameData[$i]['name'] == $fileName && $gameData[$i]['score'] > $maxScore) $maxScore = $gameData[$i]['score'];
+    }
+    if ($maxScore == -1) return "Kein Ergebnis"; //falls kein Eintrag gefunden wurde
+    return $maxScore . " P";
 }
 
 ?>
@@ -50,14 +72,15 @@ function countFiles(string $dir, string $prefix)
 
 <body>
     <main>
-        <h1 id="hello"><?= htmlspecialchars($welcomeText) ?></h1>
+        <h1 id="hello"><?= $welcomeText ?></h1>
         <section id="courses">
             <?php for ($i = 0; $i < count($courseData); $i++): //erstellt Kurspanele mithilfe Daten $courseData Array 
             ?>
                 <div id="<?= $courseData[$i]["id"] ?>" class="course">
                     <div class="info">
                         <div class="title"><?= $courseData[$i]["title"] ?></div>
-                        <div class="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non totam labore cum nobis velit eveniet corrupti, libero impedit ipsa ullam doloribus quis laborum animi, cupiditate, excepturi dicta! Vitae, quibusdam hic.</div>
+                        <hr>
+                        <div class="intro"><?= $courseData[$i]["intro"] ?></div>
                     </div>
                     <div class="learn">
                         <?php
@@ -67,6 +90,9 @@ function countFiles(string $dir, string $prefix)
 
                             //vervollständigt ggf. fehlende array-keys
                             $jsonData = completeJsonData($jsonData);
+
+                            //speichert den Rückgabewert von der getHighscore Funktion
+                            $highscore = getHighscore($conn, $jsonData["file_name"], $username, $loggedIn);
                         ?>
                             <div id="<?= $courseData[$i]["id"] . "_" . $j + 1 ?>" class="playButton <?= $courseData[$i]["id"] ?>">
                                 <a href="./navigator.php?type=<?= $jsonData["type"] ?>&fileName=<?= $jsonData["file_name"] ?>"></a>
@@ -79,8 +105,8 @@ function countFiles(string $dir, string $prefix)
                                         <path d="m826-585-56-56 30-31-128-128-31 30-57-57 30-31q23-23 57-22.5t57 23.5l129 129q23 23 23 56.5T857-615l-31 30ZM346-104q-23 23-56.5 23T233-104L104-233q-23-23-23-56.5t23-56.5l30-30 57 57-31 30 129 129 30-31 57 57-30 30Zm397-336 57-57-303-303-57 57 303 303ZM463-160l57-58-302-302-58 57 303 303Zm-6-234 110-109-64-64-109 110 63 63Zm63 290q-23 23-57 23t-57-23L104-406q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l63 63 110-110-63-62q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l303 303q23 23 23 56.5T857-441l-57 57q-23 23-57 23t-57-23l-62-63-110 110 63 63q23 23 23 56.5T577-161l-57 57Z" />
                                     </svg>
                                 <?php endif; ?>
-                                <!-- kurzer Inhaltstext der Lektion -->
-                                <p class="introText"><?= htmlspecialchars($jsonData["intro"]) ?></p>
+                                <!-- kurzer Inhaltstext der Lektion / ggf. Höchstpunktzahl -->
+                                <p class="introText"><?= htmlspecialchars($jsonData["intro"]) . "<br>🏆 " . htmlspecialchars($highscore) ?></p>
                             </div>
                         <?php endfor; ?>
                     </div>

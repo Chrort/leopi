@@ -7,7 +7,6 @@ html{
 body{
     width: 100%;
     height: calc(100vh - 4em);
-    background-color: var(--bg-dark);
 }
 
 main{
@@ -23,7 +22,6 @@ main{
 
 #panels{
     align-self: flex-start;
-    background-color: var(--bg-dark);
     transform: translateX(0);
     height: 80%;
     display: flex;
@@ -34,7 +32,8 @@ main{
 }
 
 .panel{
-    font-size: 1.6em;
+    line-height: 1.4;
+    font-size: 1.8em;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

@@ -30,3 +30,14 @@ function getPwdByName(mysqli $conn, string $name): ?string
     $row = $result->fetch_assoc();
     return $row['pwd'] ?? null;
 }
+
+//gibt die Benutzer-Id anhand des Names zurück aus dem user-table
+function getIdByName(mysqli $conn, string $name)
+{
+    $stmt = $conn->prepare("SELECT id FROM users WHERE name = ?");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['id'];
+}

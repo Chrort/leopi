@@ -4,6 +4,7 @@ const input1 = document.getElementById("input_1");
 const input2 = document.getElementById("input_2");
 const level = +document.getElementById("level").content;
 const mode = document.getElementById("mode").content;
+const fileName = document.getElementById("fileName").content;
 const btn = document.getElementById("btn");
 const task = document.getElementById("task");
 const submit = document.getElementById("submit");
@@ -20,20 +21,6 @@ let points = [];
 let result;
 let passedTime = 0;
 
-const calculateResult = (frac1, frac2) => {
-    //berechnet das exakte Ergebnis hinsichtlich des Operators
-    switch (mode){
-        case  "*":
-            return frac1 * frac2;
-        case  "/":
-            return frac1 / frac2;
-        case  "+":
-            return frac1 + frac2;
-        case  "-":
-            return frac1 - frac2;
-    }
-}
-
 const createTask = () => {
     for(let i = 0; i < 4; i++){
         //erstellt zufällig vier Zahlen für zwei Brüche und überprüft, ob der Nenner 0 ist - ob gekürzt werden kann
@@ -41,14 +28,10 @@ const createTask = () => {
 
         if(int == 0) int++; //streicht Nullen
 
-        if(i%2 != 0 && int > 1 && numbers[i - 1] > 1){
-            if(numbers[i - 1] % int == 0){
-                numbers[i - 1] = numbers[i - 1] / int;
-                int = 1;
-            }else if(int % numbers[i - 1] == 0){
-                int = int / numbers[i - 1];
-                numbers[i - 1] = 1;
-            }
+        if(i % 2 == 1){
+            let newNumbers = reduce(numbers[i - 1], int);
+            numbers[i - 1] = newNumbers[0];
+            int = newNumbers[1];
         }
 
         numbers[i] = int;
@@ -72,28 +55,9 @@ const createTask = () => {
     result = calculateResult(numbers[0] / numbers[1], numbers[2] / numbers[3]);
 }
 
-btn.addEventListener("click", () => {
-    //wenn der "Prüfen" Button geklickt wurde, überprüft er auf leere Eingaben und das Ergebnis
-    if(input1.value == "" || input2.value == "") return;
-
-    if(+input1.value / +input2.value == result){
-        points.push(50 + 50 * Math.pow(Math.E, -0.15*passedTime/1000));
-        container.style.animation = "1s correct 1"; //animiert den Schatten als Feedback für die Lösung
-    }else{
-        points.push(0);
-        container.style.animation = "1s false 1";
-    }
-    setTimeout(() => {
-        container.style.animation = "reset";
-    }, 1000);
-
-    nextQuestion();
-})
-
 const nextQuestion = () => {
-
-    console.log(question);
-    if(question == 2){
+    //Prüft ob 10 Fragen beantwortet wurden und aktualisiert die Info-Panele
+    if(question == 10){
         finishGame();
         return;
     }
@@ -109,32 +73,92 @@ const nextQuestion = () => {
     createTask();
 }
 
+btn.addEventListener("click", () => {
+    //wenn der "Prüfen" Button geklickt wurde, überprüft er auf leere Eingaben und das Ergebnis
+    if(input1.value == "" || input2.value == "") return;
+
+    console.log(result)
+    console.log(+input1.value / +input2.value)
+
+    if(+input1.value / +input2.value != result || JSON.stringify([+input1.value, +input2.value]) !== JSON.stringify(reduce(+input1.value, +input2.value))){
+        points.push(0);
+        container.style.animation = "1s false 1"; //animiert den Schatten als Feedback für die Lösung
+    }else{
+        points.push(50 + 50 * Math.pow(Math.E, -0.15*passedTime/1000));
+        container.style.animation = "1s correct 1"; 
+    }
+    setTimeout(() => {
+        container.style.animation = "reset";
+    }, 1000);
+
+    nextQuestion();
+})
+
+const calculateResult = (frac1, frac2) => {
+    //berechnet das exakte Ergebnis hinsichtlich des Operators
+    switch (mode){
+        case  "*":
+            return frac1 * frac2;
+        case  "/":
+            return frac1 / frac2;
+        case  "+":
+            return frac1 + frac2;
+        case  "-":
+            return frac1 - frac2;
+    }
+}
+
+const calcTotalPoints = () => {
+    //addiert alle Array-Einträge der points[]-Array
+    p = 0;
+    for(let i = 0; i < points.length; i++){
+        p += points[i];
+    }
+    return p;
+}
+
+const reduce = (numerator, denominator) => {
+    //gibt die gekürzte Version des Bruches zurück
+    let finish = false;
+
+    while (finish == false) {
+        let diff = Math.abs(numerator - denominator);
+
+        if(diff == 0) return [1, 1];
+
+        finish = true;
+        //die Differenz als erster Versuch zu dividieren um möglicherweiser Iterationen zu sparen
+        for(let i = diff; i > 1; i--){
+            if(Number.isInteger(numerator / i) && Number.isInteger(denominator / i)){
+                numerator /= i;
+                denominator /= i;
+                finish = false;
+            }
+        }
+    }
+
+    return [numerator, denominator];
+}
+
 const manageTimer = () => {
+    //Setz den Timer beim Aufruf zurück und speichert/zeigt die passedTime im timerInfo-Element
     passedTime = 0;
 
     if(question > 1) clearInterval(i);
 
     i = setInterval(() => {
         passedTime+=100;
-        timerInfo.innerHTML = `${passedTime / 1000}s`;
+        timerInfo.innerHTML = `${Math.round(passedTime / 1000)}s`;
     }, 100);
 }
 
 const finishGame = () => {
     info.innerHTML = `Zusammenfassung`;
     info.style.justifyContent = "center";
-    submit.innerHTML = `<button id="home" onclick="window.location.href='../startpage.php'">
+    submit.innerHTML = `<button id="home" onclick="window.location.href='./save_game.php?name=${fileName}&score=${calcTotalPoints()}'">
                             <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 -960 960 960" width="2em" fill="#000000"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                         </button>`;
-    task.innerHTML = `Punkte: ${Math.round(calcTotalPoints())}`;
-}
-
-const calcTotalPoints = () => {
-    p = 0;
-    for(let i = 0; i < points.length; i++){
-        p += points[i];
-    }
-    return p;
+    task.innerHTML = `Score: ${Math.round(calcTotalPoints())} / 1000`;
 }
 
 createTask();
