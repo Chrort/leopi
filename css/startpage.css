@@ -76,7 +76,7 @@ main{
     aspect-ratio: 1 / 1;
     height: 4em;
     width: 4em;
-    transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out, height .5s ease-in-out;
 }
 
 .playButton:hover{

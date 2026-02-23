@@ -14,12 +14,12 @@ const scoreInfo = document.getElementById("scoreInfo");
 const timerInfo = document.getElementById("timer");
 const container = document.getElementById("container");
 
-let question = 1;
-let maxQuestion = 10;
-let numbers = [];
-let points = [];
-let result;
-let passedTime = 0;
+let question = 1; //aktuelle Zahl der Frage
+let maxQuestion = 10; //max Anzahl der Fragen
+let numbers = []; //speichert die Brüche kurzfristig global 
+let points = []; //Punktespeicher-Array für detaillierte Übersicht
+let result; //speichert das Ergebnis der aktuelle Frage global
+let passedTime = 0; //zählt die Sekunden seit Start jeder Frage
 
 const createTask = () => {
     for(let i = 0; i < 4; i++){
@@ -34,7 +34,7 @@ const createTask = () => {
             int = newNumbers[1];
         }
 
-        numbers[i] = int;
+        numbers[i] = int; //nach Überfprüfungen wird int in numbers[] gespeichert, wobei int ∈ ℕ
     }
 
     //tauscht den kleineren Bruch nach hinten im Subtraktionsmodus
@@ -50,26 +50,30 @@ const createTask = () => {
         fractionParts[j].innerHTML = numbers[j];
     }
 
+    //manageTimer() setzt die Stoppuhr zurück
     manageTimer();
 
     result = calculateResult(numbers[0] / numbers[1], numbers[2] / numbers[3]);
 }
 
 const nextQuestion = () => {
-    //Prüft ob 10 Fragen beantwortet wurden und aktualisiert die Info-Panele
-    if(question == 10){
+    //Prüft ob 10 Fragen beantwortet wurden und adaptiert die Info-Panele entsprechend
+    if(question == maxQuestion){
         finishGame();
         return;
     }
 
     question++;
 
+    //leert die <input> Elemente
     input1.value = "";
     input2.value = "";
 
+    //aktualisiert die Zahl der Frage und die Punktzahl
     questionInfo.innerHTML = `Frage: ${question}/10`;
     scoreInfo.innerHTML = `Punkte: ${Math.round(calcTotalPoints())}`;
 
+    //Fragen-Loop wiederholung (erstellt neue Aufgabe bis question == maxQuestion; s.o.)
     createTask();
 }
 
@@ -77,9 +81,7 @@ btn.addEventListener("click", () => {
     //wenn der "Prüfen" Button geklickt wurde, überprüft er auf leere Eingaben und das Ergebnis
     if(input1.value == "" || input2.value == "") return;
 
-    console.log(result)
-    console.log(+input1.value / +input2.value)
-
+    //wenn Division der <input> Elemente falsch ist oder gekürzt werden kann sonnst exekutierung vom else-Block
     if(+input1.value / +input2.value != result || JSON.stringify([+input1.value, +input2.value]) !== JSON.stringify(reduce(+input1.value, +input2.value))){
         points.push(0);
         container.style.animation = "1s false 1"; //animiert den Schatten als Feedback für die Lösung
@@ -91,6 +93,7 @@ btn.addEventListener("click", () => {
         container.style.animation = "reset";
     }, 1000);
 
+    //s.o.
     nextQuestion();
 })
 

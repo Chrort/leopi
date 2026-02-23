@@ -106,7 +106,12 @@ function getHighscore(mysqli $conn, string $fileName, string $username, bool $lo
                                     </svg>
                                 <?php endif; ?>
                                 <!-- kurzer Inhaltstext der Lektion / ggf. Höchstpunktzahl -->
-                                <p class="introText"><?= htmlspecialchars($jsonData["intro"]) . "<br>🏆 " . htmlspecialchars($highscore) ?></p>
+                                <p class="introText">
+                                    <?php
+                                    echo htmlspecialchars($jsonData["intro"]) . "<br>";
+                                    if ($jsonData["type"] == "train") echo "🏆 " . htmlspecialchars($highscore);
+                                    ?>
+                                </p>
                             </div>
                         <?php endfor; ?>
                     </div>
