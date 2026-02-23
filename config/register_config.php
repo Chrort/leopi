@@ -29,11 +29,12 @@ try {
     error($e->getMessage());
 }
 
-$_SESSION['registrationMessage'] = "Erfolgreich Registriert als " . htmlspecialchars($name) . "!";
-$_SESSION['showForm'] = "register";
+$_SESSION['loginMessage'] = "Erfolgreich Registriert als " . htmlspecialchars($name) . "!";
+$_SESSION['showForm'] = "login";
 header("Location: ../login/login.php?registrationSucces=true");
 die();
 
+//überprüft Eingabe auf Vollständigkeit/Länge/Stimmigkeit
 function errorHandlers(mysqli $conn, string $name, string $pwd, string $pwdRepeat): array
 {
     if (empty($name) || empty($pwd) || empty($pwdRepeat)) {
@@ -63,6 +64,7 @@ function errorHandlers(mysqli $conn, string $name, string $pwd, string $pwdRepea
     return [true, "passed"];
 }
 
+//allgemeine Funktion zum redirecten und Nachricht ausgeben
 function error(string $message)
 {
     $_SESSION['registrationMessage'] = $message;

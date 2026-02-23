@@ -2,6 +2,7 @@
 
 function completeJsonData(array $jsonData): array
 {
+    //vervollstädigt fehlende array-keys um Fehler beim Lesen woanders zu vermeiden
     $completeJsonData = $jsonData;
     if (!array_key_exists("name", $completeJsonData)) $completeJsonData["name"] = "unnamened";
     if (!array_key_exists("file_name", $completeJsonData)) $completeJsonData["file_name"] = "missing";
@@ -15,6 +16,7 @@ function completeJsonData(array $jsonData): array
 
 function getJsonFileContent(string $filePath, int $number): array
 {
+    //gibt den Inhalt des JSON Files vom entsprechendem Pfad zurück
     $completeFilePath = $filePath . "_" . $number . ".json";
     $json = file_get_contents($completeFilePath);
     $data = json_decode($json, true);

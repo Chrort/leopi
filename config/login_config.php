@@ -51,6 +51,7 @@ function rightPwd(mysqli $conn, string $name, string $pwd): bool
     return false;
 }
 
+//allgemeine Funktion zum redirecten und Nachricht ausgeben
 function error(string $message)
 {
     $_SESSION['loginMessage'] = $message;

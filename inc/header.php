@@ -11,6 +11,7 @@ $loggedIn = $_SESSION['loggedIn'] ?? false;
         <a href="/leopi/index.php">Welcome</a>
         <a href="/leopi/startpage/startpage.php">Startpage</a>
         <?php if ($loggedIn): ?>
+            <!-- Elemente werden nur für eingeloggte Benutzer angezeigt -->
             <a href="/leopi/profile/profile.php">Profile</a>
             <a href="/leopi/inc/logout.php" id="logoutBtn">Logout</a>
         <?php elseif (!$loggedIn): ?>
