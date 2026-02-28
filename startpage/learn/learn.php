@@ -53,6 +53,17 @@ $jsonData = completeJsonData(getJsonFileContent("../../json/" . $name, $number))
             <?php for ($i = 0; $i < count($jsonData["pages"]); $i++): ?>
                 <div class="panel" id="panel_<?= $i ?>" style="width: calc(100% / <?= count($jsonData["pages"]) ?>)">
                     <?= $jsonData["pages"][$i] ?>
+                    <?php if ($i == count($jsonData["pages"]) - 1): //fügt auf der letzten Seite einen Startpage-Button ein 
+                    ?>
+                        <div id="homeBtn">
+                            <a href="../startpage.php">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="2rem" viewBox="0 -960 960 960" width="2rem" fill="#000000">
+                                    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                                </svg>
+                                Hab's
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endfor; ?>
         </section>

@@ -2,9 +2,11 @@
 
 session_start();
 
+//wenn gleich "flex" wird die Nachricht angezeigt
 $displayLoginForm = "none";
 $displayRegisterForm = "none";
 
+//standartmäßig "login" außer es wird von der Session-Variable Überschrieben
 $showForm = $_SESSION["showForm"] ?? "login";
 
 $changeFormTextContent = "Registrieren";
@@ -26,6 +28,7 @@ $messageVisibility = "none";
 
 $registrationMessage == "" && $loginMessage == "" ? $messageVisibility = "none" : $messageVisibility = "flex";
 
+//löscht den Inahlt alle relevanten Session-Variablen
 unset($_SESSION["showForm"], $_SESSION['registrationMessage'], $_SESSION['loginMessage']);
 
 ?>

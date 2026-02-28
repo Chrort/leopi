@@ -60,3 +60,27 @@ main{
     font-size: 3em;
     left: 1em;
 }
+
+#homeBtn{
+    cursor: pointer;
+    border: 1px solid var(--border);
+    width: 100%;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .5s;
+}
+
+#homeBtn > a{
+    font-size: 2rem;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#homeBtn:hover{
+    background-color: var(--success);
+}

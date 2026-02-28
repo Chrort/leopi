@@ -53,7 +53,8 @@ const createTask = () => {
     //manageTimer() setzt die Stoppuhr zurück
     manageTimer();
 
-    result = calculateResult(numbers[0] / numbers[1], numbers[2] / numbers[3]);
+    //Ergebnis leicht gerundet um nicht exakte Dezimalzahldarstellungen von Javascript zu umgehen
+    result = Math.round(calculateResult((numbers[0] / numbers[1]), (numbers[2] / numbers[3])) * 10000) / 10000;
 }
 
 const nextQuestion = () => {
@@ -82,7 +83,7 @@ btn.addEventListener("click", () => {
     if(input1.value == "" || input2.value == "") return;
 
     //wenn Division der <input> Elemente falsch ist oder gekürzt werden kann sonnst exekutierung vom else-Block
-    if(+input1.value / +input2.value != result || JSON.stringify([+input1.value, +input2.value]) !== JSON.stringify(reduce(+input1.value, +input2.value))){
+    if(Math.round((+input1.value / +input2.value) * 10000) / 10000 != result || JSON.stringify([+input1.value, +input2.value]) !== JSON.stringify(reduce(+input1.value, +input2.value))){
         points.push(0);
         container.style.animation = "1s false 1"; //animiert den Schatten als Feedback für die Lösung
     }else{

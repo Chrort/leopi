@@ -1,7 +1,7 @@
 {
     "name": "Brüche Dividieren",
     "file_name": "division_2.json",
-    "intro": "Übe Brüche zu dividieren",
+    "intro": "Dividieren im Zahlenbereich von 1-10; aber mit Brüchen",
     "type": "train",
     "mode": "/",
     "level": 2

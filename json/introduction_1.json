@@ -2,11 +2,12 @@
     "name": "Einleitung Brüche",
     "file_name": "introduction_1.json",
     "type": "learn",
-    "intro": "Einstieg in die Welt der Bruchrechnung! Was sind Brüche; Einfache Beispiele; Erweitern & Kürzen",
+    "intro": "Einstieg in die Welt der Bruchrechnung! Was sind Brüche; Einfache Beispiele",
     "pages": 
     [
         "<p><svg xmlns='http://www.w3.org/2000/svg' height='4em' viewBox='0 -960 960 960' width='4em' fill='#EAC452'><path d='M480-80q-26 0-47-12.5T400-126q-33 0-56.5-23.5T320-206v-142q-59-39-94.5-103T190-590q0-121 84.5-205.5T480-880q121 0 205.5 84.5T770-590q0 77-35.5 140T640-348v142q0 33-23.5 56.5T560-126q-12 21-33 33.5T480-80Zm-80-126h160v-36H400v36Zm0-76h160v-38H400v38Zm-8-118h58v-108l-88-88 42-42 76 76 76-76 42 42-88 88v108h58q54-26 88-76.5T690-590q0-88-61-149t-149-61q-88 0-149 61t-61 149q0 63 34 113.5t88 76.5Zm88-162Zm0-38Z'/></svg><b>Warte!</b> Was ist eigentlich 17 durch 3 oder was kommt raus wenn man 3 durch 7 dividiert? Bevor du den Taschenrechner rausholst; das geht auch im Kopf! <br> Die Lösung sind Brüche. Ein Bruch ist nichts anderes als eine Division - also eine geteilt Rechnung. </p>",
-        "<h3>Brüche sind...<b><i>toller</i></b></h3>",
-        "<h3>Brüche sind...<b><i>toller</i></b>2</h3>"
+        "<p>Brüche bestehen aus drei Teilen: Der Zähler, der Nenner und der Bruchstrich (siehe Grafik). Das Beispiel <b>17 durch 3</b> lässt sich also in einen Bruch umwandeln, der dann eine korrekte Lösung der Rechnung ist. <b>17</b> (der Divident) wäre dann der Zähler und <b>3</b> (der Divisor) der Nenner. <br><br> <img src='../../img/fraction.png' style='height: 5em;'/></p>",
+        "<p>Brüche sind also eine alternative Schreibweise für Zahlen. Vorstellen kann man sich am besten mit z.B. einem Kuchen. Ein ganzer Kuchen stellt die Zahl 1 dar. Wenn man den Kuchen viertelt, hat man vier Teile, die zusammen wieder einen ganzen Kuchen ergeben. Jedes dieser vier Teile hat also die Größe eines Viertels des gesamten Kuchens, oder in Bruchschreibweise ist <b>1/4</b> Kuchen groß. Der Bruch <b>3/4</b> <i>(gesprochen: 'Drei Vierte')</i> beschreibt also die Größe des Kuchens, wenn man drei dieser Viertel zusammentut oder ein Viertel vom ganzen Kuchen weglässt.</p>",
+        "<p>Bis jetzt waren alle Brüche kleiner als 1, weil der Zähler kleiner war als der Nenner. Der Bruch <b>5/4</b> ist demnach größer als 1; oder genauer 1.25, da 5:4=1.25. Ganz logisch wenn man bedenkt, dass fünf Viertel eines Kuchens mehr als einen Ganzen ergeben, wenn man ihn wieder zusammenbaut.</p>"
     ]
 }
