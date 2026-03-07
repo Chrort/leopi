@@ -3,18 +3,18 @@
 session_start();
 
 require_once './connect.php';
-//file mit queries für user table
+//File mit queries für user-table
 require '../queries/user_queries.php';
 
 if (!isset($_POST['submit'])) {
     exit();
 }
 
-//post form data von ../login/login.php
+//post-form data von ../login/login.php
 $name = $_POST['name'];
 $pwd = $_POST['pwd'];
 
-//eingabeüberprüfung
+//Eingabeüberprüfung
 $errorHandlerResult = errorHandlers($conn, $name, $pwd);
 
 if (!$errorHandlerResult[0]) {
@@ -27,7 +27,7 @@ $_SESSION['username'] = $name;
 header("Location: ../startpage/startpage.php?loginSucces=true");
 die();
 
-//eingabeüberprüfung
+//Eingabeüberprüfung
 function errorHandlers(mysqli $conn, string $name, string $pwd): array
 {
     if (empty($name) || empty($pwd)) {
@@ -41,7 +41,7 @@ function errorHandlers(mysqli $conn, string $name, string $pwd): array
     return [true, "passed"];
 }
 
-//vergleicht pwd mit pwd in der db
+//vergleicht pwd mit pwd in der DB
 function rightPwd(mysqli $conn, string $name, string $pwd): bool
 {
     $hashedPwd = getPwdByName($conn, $name);

@@ -1,5 +1,6 @@
 <?php
 
+//speichert id/file-name/score in einem neuen Tabelleneintrag
 function insertGameData(mysqli $conn, int $playerId, string $name, int $score)
 {
     $stmt = $conn->prepare("INSERT INTO games (player_id, name, score) VALUES (?,?,?)");
@@ -7,6 +8,7 @@ function insertGameData(mysqli $conn, int $playerId, string $name, int $score)
     $stmt->execute();
 }
 
+//gibt anhand der Nutzer-Id die restlichen Daten zum Benutzer zurück
 function getDataByPlayer(mysqli $conn, int $playerId): array
 {
     $stmt = $conn->prepare("SELECT * FROM games WHERE player_id = ?");

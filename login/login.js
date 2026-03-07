@@ -5,12 +5,13 @@ const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const changeForm = document.getElementById("changeForm");
 
-//versteckt message box nach 5s
+//versteckt message-box nach 5s
 setTimeout(() => {
     regMessage.style.display = "none";
     logMessage.style.display = "none";
 }, 5000);
 
+//tauscht das angezeigte form beim "click"-Event des Buttons
 const swapForm = () => {
     let current = changeForm.textContent;
     

@@ -1,0 +1,114 @@
+@import url("./root.css");
+
+body{
+    height: calc(100vh - 4em);
+    background-color: var(--bg);
+}
+
+main{
+    background: black url("../img/space_bg.jpg") no-repeat center !important;
+}
+
+.enemy{
+    position: absolute;
+    display: flex;
+    border: 1px solid;
+    font-size: 1.4em;
+    background-color: var(--bg);
+    padding: 5px;
+    box-shadow: 10px 0 8px rgb(255, 119, 0);
+    border-radius: 5px;
+    scale: 1;
+    transition: scale 1s;
+}
+
+.task{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.input_int{
+    aspect-ratio: 1 / 1;
+}
+
+.input_int::-webkit-outer-spin-button, .input_int::-webkit-inner-spin-button{
+    display: none;
+}
+
+#info{
+    gap: 10px;
+    z-index: 6;
+    color: var(--text);
+    position: absolute;
+    top: .9rem;
+    font-size: 1.5em;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#health{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(.1em);
+}
+
+#endScreen{
+    position: absolute;
+    justify-self: center;
+    top: calc(50% - 10em);
+    z-index: 2;
+    height: 20em;
+    width: 35em;
+    border-radius: 30px;
+    aspect-ratio: 16 / 9;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(-200%);
+    transition: transform .5s;
+}
+
+#homeBtn{
+    cursor: pointer;
+    border: 1px solid var(--border);
+    width: 80%;
+    padding: 5px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .5s;
+}
+
+#homeBtn > a{
+    font-size: 2rem;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#homeBtn:hover{
+    background-color: var(--success);
+}
+
+@keyframes damage {
+    from{
+        box-shadow: 0 0 5px var(--danger) inset;
+    }
+    50%{
+        box-shadow: 0 0 20px 40px var(--danger) inset;
+    }
+    to{
+        box-shadow: 0 0 5px var(--danger) inset;
+    }
+}

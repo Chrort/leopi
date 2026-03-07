@@ -159,7 +159,7 @@ const manageTimer = () => {
 const finishGame = () => {
     info.innerHTML = `Zusammenfassung`;
     info.style.justifyContent = "center";
-    submit.innerHTML = `<button id="home" onclick="window.location.href='./save_game.php?name=${fileName}&score=${calcTotalPoints()}'">
+    submit.innerHTML = `<button id="home" onclick="window.location.href='../save_game.php?name=${fileName}&score=${calcTotalPoints()}'">
                             <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 -960 960 960" width="2em" fill="#000000"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                         </button>`;
     task.innerHTML = `Score: ${Math.round(calcTotalPoints())} / 1000`;

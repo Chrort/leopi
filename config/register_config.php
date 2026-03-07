@@ -3,26 +3,26 @@
 session_start();
 
 require_once './connect.php';
-//file mit queries für user table
+//File mit queries für user table
 require '../queries/user_queries.php';
 
 if (!isset($_POST['submit'])) {
     exit();
 }
 
-//post form data von ../login/login.php
+//post-form data von ../login/login.php
 $name = $_POST['name'];
 $pwd = $_POST['pwd'];
 $pwdRepeat = $_POST['pwdRepeat'];
 
-//eingabeüberprüfung
+//Eingabeüberprüfung
 $errorHandlerResult = errorHandlers($conn, $name, $pwd, $pwdRepeat);
 
 if (!$errorHandlerResult[0]) {
     error($errorHandlerResult[1]);
 }
 
-//erstelle neuen nutzer
+//erstelle neuen Nutzer
 try {
     addUser($conn, $name, password_hash($pwd, PASSWORD_DEFAULT));
 } catch (Exception $e) {

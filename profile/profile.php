@@ -21,7 +21,7 @@ $userGameData = getDataByPlayer($conn, $id);
 
 $average = 0;
 //falls registrierte gespielte Spiele vorhanden sind wird der Druchschnitt berechnet (sonst 0)
-if (count($userGameData) != 0) $average = round(totalScore($userGameData) / count($userGameData), 3);
+if (count($userGameData) != 0) $average = round(totalScore($userGameData) / count($userGameData), 2);
 
 function totalScore(array $userGameData): int
 {

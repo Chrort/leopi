@@ -20,7 +20,8 @@ $courseData = [
     ["id" => "multiplication", "title" => "Multiplikation", "intro" => "Von den vier Grundrechenarten ist die Multiplikation das simpelste, da keine Erweiterung nötig ist zum verrechnen."],
     ["id" => "division", "title" => "Division", "intro" => "Division ist genauso wie Multiplikation nur, dass man vorher den Kehrwert bilden muss. Also quasi genauso zielgerichtet lösbar."],
     ["id" => "addition", "title" => "Addition", "intro" => "Bei der Addition wird es im Kopf ein bisschen schwieriger, da man erst die Brüche gleichnamig machen muss, also den Wert des Nenners anpassen muss durch erweitern."],
-    ["id" => "subtraction", "title" => "Subtraktion", "intro" => "Sobald man Addition gemeistert hat gibt es keine weitere Hürde die im Weg steht um zu subtrahiern. Gleiches Prinzip - es wird nur weniger."]
+    ["id" => "subtraction", "title" => "Subtraktion", "intro" => "Sobald man Addition gemeistert hat gibt es keine weitere Hürde die im Weg steht um zu subtrahiern. Gleiches Prinzip - es wird nur weniger."],
+    ["id" => "game", "title" => "Spiele", "intro" => "Beweise deine Rechenkünste spielerisch!"]
 ];
 
 //zählt files mit entsprechendem Präfix
@@ -104,12 +105,16 @@ function getHighscore(mysqli $conn, string $fileName, string $username, bool $lo
                                     <svg xmlns="http://www.w3.org/2000/svg" height="<?= 16 + 7 * $jsonData["level"] ?>px" viewBox="0 -960 960 960" width="<?= 16 + 7 * $jsonData["level"] ?>px" fill="#1f1f1f">
                                         <path d="m826-585-56-56 30-31-128-128-31 30-57-57 30-31q23-23 57-22.5t57 23.5l129 129q23 23 23 56.5T857-615l-31 30ZM346-104q-23 23-56.5 23T233-104L104-233q-23-23-23-56.5t23-56.5l30-30 57 57-31 30 129 129 30-31 57 57-30 30Zm397-336 57-57-303-303-57 57 303 303ZM463-160l57-58-302-302-58 57 303 303Zm-6-234 110-109-64-64-109 110 63 63Zm63 290q-23 23-57 23t-57-23L104-406q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l63 63 110-110-63-62q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l303 303q23 23 23 56.5T857-441l-57 57q-23 23-57 23t-57-23l-62-63-110 110 63 63q23 23 23 56.5T577-161l-57 57Z" />
                                     </svg>
+                                <?php elseif ($jsonData["type"] == "game"): ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                                        <path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                                    </svg>
                                 <?php endif; ?>
                                 <!-- kurzer Inhaltstext der Lektion / ggf. Höchstpunktzahl -->
                                 <p class="introText">
                                     <?php
                                     echo htmlspecialchars($jsonData["intro"]) . "<br>";
-                                    if ($jsonData["type"] == "train") echo "🏆 " . htmlspecialchars($highscore);
+                                    if ($jsonData["type"] == "train" || $jsonData["type"] == "game") echo "🏆 " . htmlspecialchars($highscore);
                                     ?>
                                 </p>
                             </div>
