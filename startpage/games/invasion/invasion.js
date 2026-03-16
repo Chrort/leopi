@@ -93,6 +93,7 @@ const createNewEnemy = () => {
 
 const checkAnswer = e => {
     let id = e.target.id.split("_")[3]
+    console.log(speed, spawnSpeed);
     //überprüft ob das jeweils andere input-Feld noch leer ist -> return
     if(e.target.id.split("_")[2] == "1" && document.getElementById(`input_int_2_${id}`).value == "" || e.target.id.split("_")[2] == "2" && document.getElementById(`input_int_1_${id}`).value == "") return;
     //das Ergebnis wurde bereits in der Klasse ausgerechnet

@@ -20,13 +20,20 @@ session_start();
 
 <body>
     <main>
-        <section id="welcome">
-            <h1>Lerne Bruchrechnung</h1>
-            <h3>Viele Übungen und Erklärungen</h3>
-            <h3>Melde dich an um Statistiken zu speichern</h3>
+        <h1 id="link"><a href="./startpage/startpage.php">Starte jetzt!</a></h1>
+        <section id="learn">
+            <img src="./img/learn.jpg" alt="learn">
+            <h2>← Lerne die Grundlagen!</h2>
         </section>
-        <section id="start">
-            <div><a href="./startpage/startpage.php">Starte jetzt!</a></div>
+        <hr>
+        <section id="train">
+            <h2>Meistere deine Rechenkünste! →</h2>
+            <img src="./img/train.jpg" alt="train">
+        </section>
+        <hr>
+        <section id="play">
+            <img src="./img/play.jpg" alt="play">
+            <h2>← Teste dein Wissen spielerisch!</h2>
         </section>
     </main>
 </body>

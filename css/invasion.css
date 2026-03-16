@@ -31,9 +31,11 @@ main{
 
 .input_int{
     aspect-ratio: 1 / 1;
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
 
-.input_int::-webkit-outer-spin-button, .input_int::-webkit-inner-spin-button{
+.input_int::-webkit-outer-spin-button, .input_int::-webkit-inner-spin-button {
     display: none;
 }
 

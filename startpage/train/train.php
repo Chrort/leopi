@@ -41,15 +41,15 @@ $jsonData = completeJsonData(getJsonFileContent("../../json/" . $name, $number))
             </div>
             <div id="task">
                 <div id="fraction_1">
-                    <div class="int" id="int_1">34</div>
+                    <div class="int" id="int_1"></div>
                     <hr>
-                    <div class="int" id="int_2">4</div>
+                    <div class="int" id="int_2"></div>
                 </div>
                 <div id="mode"><?= $jsonData["mode"] ?></div>
                 <div id="fraction_2">
-                    <div class="int" id="int_3">5</div>
+                    <div class="int" id="int_3"></div>
                     <hr>
-                    <div class="int" id="int_4">6</div>
+                    <div class="int" id="int_4"></div>
                 </div>
                 <div id="equal">=</div>
                 <div id="fraction_3">

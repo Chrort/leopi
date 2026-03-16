@@ -25,18 +25,14 @@ const createTask = () => {
     for(let i = 0; i < 4; i++){
         //erstellt zufällig vier Zahlen für zwei Brüche und überprüft, ob der Nenner 0 ist - ob gekürzt werden kann
         let int = Math.round(Math.random() * level * 5);
-
         if(int == 0) int++; //streicht Nullen
-
         if(i % 2 == 1){
             let newNumbers = reduce(numbers[i - 1], int);
             numbers[i - 1] = newNumbers[0];
             int = newNumbers[1];
         }
-
         numbers[i] = int; //nach Überfprüfungen wird int in numbers[] gespeichert, wobei int ∈ ℕ
     }
-
     //tauscht den kleineren Bruch nach hinten im Subtraktionsmodus
     if(mode == "-"){
         if(numbers[0] / numbers[1] < numbers[2] / numbers[3]){
@@ -44,17 +40,14 @@ const createTask = () => {
             numbers = [numbers[2], numbers[3], temp[0], temp[1]];
         }
     }
-
     //zeigt fertige Brüche im Browser
     for(let j = 0; j < 4; j++){
         fractionParts[j].innerHTML = numbers[j];
     }
-
     //manageTimer() setzt die Stoppuhr zurück
     manageTimer();
-
     //Ergebnis leicht gerundet um nicht exakte Dezimalzahldarstellungen von Javascript zu umgehen
-    result = Math.round(calculateResult((numbers[0] / numbers[1]), (numbers[2] / numbers[3])) * 10000) / 10000;
+    result = Math.round(calculateResult((numbers[0] / numbers[1]), (numbers[2] / numbers[3])) * 10**4) / 10**4;
 }
 
 const nextQuestion = () => {
@@ -78,8 +71,8 @@ const nextQuestion = () => {
     createTask();
 }
 
-btn.addEventListener("click", () => {
-    //wenn der "Prüfen" Button geklickt wurde, überprüft er auf leere Eingaben und das Ergebnis
+const checkAnswer = () => {
+//wenn der "Prüfen" Button geklickt wurde, überprüft er auf leere Eingaben und das Ergebnis
     if(input1.value == "" || input2.value == "") return;
 
     //wenn Division der <input> Elemente falsch ist oder gekürzt werden kann sonnst exekutierung vom else-Block
@@ -96,6 +89,11 @@ btn.addEventListener("click", () => {
 
     //s.o.
     nextQuestion();
+}
+
+btn.addEventListener("click", checkAnswer);
+document.addEventListener("keydown", (e) => {
+    if(e.code == "Enter" || e.code == "Space") checkAnswer();
 })
 
 const calculateResult = (frac1, frac2) => {
@@ -124,12 +122,9 @@ const calcTotalPoints = () => {
 const reduce = (numerator, denominator) => {
     //gibt die gekürzte Version des Bruches zurück
     let finish = false;
-
     while (finish == false) {
         let diff = Math.abs(numerator - denominator);
-
         if(diff == 0) return [1, 1];
-
         finish = true;
         //die Differenz als erster Versuch zu dividieren um möglicherweiser Iterationen zu sparen
         for(let i = diff; i > 1; i--){
@@ -140,7 +135,6 @@ const reduce = (numerator, denominator) => {
             }
         }
     }
-
     return [numerator, denominator];
 }
 
