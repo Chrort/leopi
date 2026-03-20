@@ -18,7 +18,7 @@ let question = 1; //aktuelle Zahl der Frage
 let maxQuestion = 10; //max Anzahl der Fragen
 let numbers = []; //speichert die Brüche kurzfristig global 
 let points = []; //Punktespeicher-Array für detaillierte Übersicht
-let result; //speichert das Ergebnis der aktuelle Frage global
+let result; //speichert das Ergebnis der aktuellen Frage global
 let passedTime = 0; //zählt die Sekunden seit Start jeder Frage
 
 const createTask = () => {

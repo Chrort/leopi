@@ -11,7 +11,7 @@ $showForm = $_SESSION["showForm"] ?? "login";
 
 $changeFormTextContent = "Registrieren";
 
-//schaut ob er login- oder register from anzeigen soll
+//schaut ob er login- oder register form anzeigen soll
 if ($showForm == "login") {
     $displayLoginForm = "block";
 } else {

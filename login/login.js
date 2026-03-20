@@ -14,13 +14,13 @@ setTimeout(() => {
 //tauscht das angezeigte form beim "click"-Event des Buttons
 const swapForm = () => {
     let current = changeForm.textContent;
-    
-    if(current == "Registrieren"){
+
+    if (current == "Registrieren") {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
         changeForm.textContent = "Login";
         regMessage.style.display = "none";
-    }else{
+    } else {
         registerForm.style.display = "none";
         loginForm.style.display = "block";
         changeForm.textContent = "Registrieren";
